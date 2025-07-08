@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Checkout - Farsha Store</title>
+    <link rel="stylesheet" href="../css/main.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<script type="module" src="https://static.rocket.new/rocket-web.js?_cfg=https%3A%2F%2Ffarshasto9019back.builtwithrocket.new&_be=https%3A%2F%2Fapplication.rocket.new&_v=0.1.5"></script>
+</head>
+<body class="bg-background min-h-screen">
+    <!-- Sticky Header -->
+    <header class="sticky top-0 z-50 bg-surface border-b border-border shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <a href="product_catalog_browse.html" class="flex items-center space-x-2">
+                        <svg class="w-8 h-8 text-primary" viewBox="0 0 32 32" fill="currentColor">
+                            <path d="M16 2L4 8v16l12 6 12-6V8L16 2zm0 4l8 4v12l-8 4-8-4V10l8-4z"/>
+                            <circle cx="16" cy="16" r="4"/>
+                        </svg>
+                        <span class="text-xl font-bold text-primary">Farsha Store</span>
+                    </a>
+                </div>
+
+                <!-- Security Badges -->
+                <div class="hidden md:flex items-center space-x-4">
+                    <div class="flex items-center space-x-2 text-sm text-success-600">
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/>
+                        </svg>
+                        <span class="font-medium">Secure Checkout</span>
+                    </div>
+                    <div class="flex items-center space-x-2 text-sm text-success-600">
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zM12 17c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zM15.1 8H8.9V6c0-1.71 1.39-3.1 3.1-3.1s3.1 1.39 3.1 3.1v2z"/>
+                        </svg>
+                        <span class="font-medium">SSL Encrypted</span>
+                    </div>
+                </div>
+
+                <!-- Shopping Cart -->
+                <a href="shopping_cart.html" class="relative p-2 text-secondary-600 hover:text-primary transition-colors">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-2.5 5M7 13l2.5 5m6-5v6a2 2 0 01-2 2H9a2 2 0 01-2-2v-6m8 0V9a2 2 0 00-2-2H9a2 2 0 00-2 2v4.01"/>
+                    </svg>
+                    <span class="absolute -top-1 -right-1 bg-accent text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">3</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Progress Indicator -->
+    <div class="bg-surface border-b border-border">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-4">
+                    <div class="flex items-center">
+                        <div class="w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center text-sm font-medium">1</div>
+                        <span class="ml-2 text-sm font-medium text-primary">Shipping</span>
+                    </div>
+                    <div class="w-8 h-0.5 bg-secondary-200"></div>
+                    <div class="flex items-center">
+                        <div class="w-8 h-8 bg-secondary-200 text-secondary-600 rounded-full flex items-center justify-center text-sm font-medium">2</div>
+                        <span class="ml-2 text-sm text-secondary-600">Payment</span>
+                    </div>
+                    <div class="w-8 h-0.5 bg-secondary-200"></div>
+                    <div class="flex items-center">
+                        <div class="w-8 h-8 bg-secondary-200 text-secondary-600 rounded-full flex items-center justify-center text-sm font-medium">3</div>
+                        <span class="ml-2 text-sm text-secondary-600">Review</span>
+                    </div>
+                </div>
+                <a href="shopping_cart.html" class="text-sm text-primary hover:text-primary-700 font-medium">← Back to Cart</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+        <div class="lg:grid lg:grid-cols-12 lg:gap-8">
+            <!-- Checkout Form -->
+            <div class="lg:col-span-7">
+                <!-- Guest Checkout Option -->
+                <div class="bg-surface rounded-lg shadow-card p-6 mb-6">
+                    <div class="flex items-center justify-between mb-4">
+                        <h2 class="text-lg font-semibold text-text-primary">Account Information</h2>
+                        <a href="user_authentication.html" class="text-sm text-primary hover:text-primary-700 font-medium">Sign In</a>
+                    </div>
+                    <div class="space-y-4">
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-text-primary mb-2">Email Address</label>
+                            <input type="email" id="email" name="email" value="john.doe@example.com" class="input-field" placeholder="Enter your email" />
+                        </div>
+                        <div class="flex items-center">
+                            <input type="checkbox" id="createAccount" class="rounded border-border text-primary focus:ring-primary-500" />
+                            <label for="createAccount" class="ml-3 text-sm text-secondary-700">Create an account for faster checkout next time</label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Shipping Address -->
+                <div class="bg-surface rounded-lg shadow-card p-6 mb-6">
+                    <div class="flex items-center justify-between mb-4">
+                        <h2 class="text-lg font-semibold text-text-primary">Shipping Address</h2>
+                        <button onclick="toggleAddressForm()" class="text-sm text-primary hover:text-primary-700 font-medium">+ Add New Address</button>
+                    </div>
+
+                    <!-- Saved Addresses -->
+                    <div class="space-y-3 mb-6">
+                        <label class="flex items-start p-4 border border-primary bg-primary-50 rounded-lg cursor-pointer">
+                            <input type="radio" name="address" value="home" class="mt-1 text-primary focus:ring-primary-500" checked />
+                            <div class="ml-3 flex-1">
+                                <div class="font-medium text-text-primary">Home Address</div>
+                                <div class="text-sm text-secondary-600 mt-1">
+                                    John Doe<br />
+                                    123 Main Street, Apt 4B<br />
+                                    New York, NY 10001<br />
+                                    United States
+                                </div>
+                            </div>
+                            <button class="text-primary hover:text-primary-700 ml-2">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
+                                </svg>
+                            </button>
+                        </label>
+
+                        <label class="flex items-start p-4 border border-border rounded-lg cursor-pointer hover:border-primary transition-colors">
+                            <input type="radio" name="address" value="work" class="mt-1 text-primary focus:ring-primary-500" />
+                            <div class="ml-3 flex-1">
+                                <div class="font-medium text-text-primary">Work Address</div>
+                                <div class="text-sm text-secondary-600 mt-1">
+                                    John Doe<br />
+                                    456 Business Ave, Suite 200<br />
+                                    New York, NY 10002<br />
+                                    United States
+                                </div>
+                            </div>
+                            <button class="text-secondary-600 hover:text-primary ml-2">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
+                                </svg>
+                            </button>
+                        </label>
+                    </div>
+
+                    <!-- New Address Form -->
+                    <div id="newAddressForm" class="hidden border-t border-border pt-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label for="firstName" class="block text-sm font-medium text-text-primary mb-2">First Name</label>
+                                <input type="text" id="firstName" name="firstName" class="input-field" placeholder="First name" />
+                            </div>
+                            <div>
+                                <label for="lastName" class="block text-sm font-medium text-text-primary mb-2">Last Name</label>
+                                <input type="text" id="lastName" name="lastName" class="input-field" placeholder="Last name" />
+                            </div>
+                            <div class="md:col-span-2">
+                                <label for="address1" class="block text-sm font-medium text-text-primary mb-2">Address Line 1</label>
+                                <input type="text" id="address1" name="address1" class="input-field" placeholder="Street address" />
+                            </div>
+                            <div class="md:col-span-2">
+                                <label for="address2" class="block text-sm font-medium text-text-primary mb-2">Address Line 2 (Optional)</label>
+                                <input type="text" id="address2" name="address2" class="input-field" placeholder="Apartment, suite, etc." />
+                            </div>
+                            <div>
+                                <label for="city" class="block text-sm font-medium text-text-primary mb-2">City</label>
+                                <input type="text" id="city" name="city" class="input-field" placeholder="City" />
+                            </div>
+                            <div>
+                                <label for="state" class="block text-sm font-medium text-text-primary mb-2">State</label>
+                                <select id="state" name="state" class="input-field">
+                                    <option value>Select state</option>
+                                    <option value="NY">New York</option>
+                                    <option value="CA">California</option>
+                                    <option value="TX">Texas</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="zipCode" class="block text-sm font-medium text-text-primary mb-2">ZIP Code</label>
+                                <input type="text" id="zipCode" name="zipCode" class="input-field" placeholder="ZIP code" />
+                            </div>
+                            <div>
+                                <label for="country" class="block text-sm font-medium text-text-primary mb-2">Country</label>
+                                <select id="country" name="country" class="input-field">
+                                    <option value="US">United States</option>
+                                    <option value="CA">Canada</option>
+                                    <option value="UK">United Kingdom</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="flex space-x-3 mt-6">
+                            <button onclick="toggleAddressForm()" class="flex-1 bg-secondary-100 text-secondary-700 py-3 rounded-lg font-medium hover:bg-secondary-200 transition-colors">
+                                Cancel
+                            </button>
+                            <button class="flex-1 bg-primary text-white py-3 rounded-lg font-medium hover:bg-primary-700 transition-colors">
+                                Save Address
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Shipping Options -->
+                <div class="bg-surface rounded-lg shadow-card p-6 mb-6">
+                    <h2 class="text-lg font-semibold text-text-primary mb-4">Shipping Options</h2>
+                    <div class="space-y-3">
+                        <label class="flex items-center justify-between p-4 border border-primary bg-primary-50 rounded-lg cursor-pointer">
+                            <div class="flex items-center">
+                                <input type="radio" name="shipping" value="standard" class="text-primary focus:ring-primary-500" checked />
+                                <div class="ml-3">
+                                    <div class="font-medium text-text-primary">Standard Shipping</div>
+                                    <div class="text-sm text-secondary-600">5-7 business days</div>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <div class="font-medium text-text-primary">$5.99</div>
+                            </div>
+                        </label>
+
+                        <label class="flex items-center justify-between p-4 border border-border rounded-lg cursor-pointer hover:border-primary transition-colors">
+                            <div class="flex items-center">
+                                <input type="radio" name="shipping" value="express" class="text-primary focus:ring-primary-500" />
+                                <div class="ml-3">
+                                    <div class="font-medium text-text-primary">Express Shipping</div>
+                                    <div class="text-sm text-secondary-600">2-3 business days</div>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <div class="font-medium text-text-primary">$12.99</div>
+                            </div>
+                        </label>
+
+                        <label class="flex items-center justify-between p-4 border border-border rounded-lg cursor-pointer hover:border-primary transition-colors">
+                            <div class="flex items-center">
+                                <input type="radio" name="shipping" value="overnight" class="text-primary focus:ring-primary-500" />
+                                <div class="ml-3">
+                                    <div class="font-medium text-text-primary">Overnight Shipping</div>
+                                    <div class="text-sm text-secondary-600">Next business day</div>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <div class="font-medium text-text-primary">$24.99</div>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Payment Method -->
+                <div class="bg-surface rounded-lg shadow-card p-6 mb-6">
+                    <h2 class="text-lg font-semibold text-text-primary mb-4">Payment Method</h2>
+                    
+                    <!-- Payment Options -->
+                    <div class="space-y-4 mb-6">
+                        <label class="flex items-center p-4 border border-primary bg-primary-50 rounded-lg cursor-pointer">
+                            <input type="radio" name="payment" value="card" class="text-primary focus:ring-primary-500" checked />
+                            <div class="ml-3 flex items-center space-x-3">
+                                <svg class="w-6 h-6 text-primary" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M20 4H4c-1.11 0-1.99.89-1.99 2L2 18c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4v-6h16v6zm0-10H4V6h16v2z"/>
+                                </svg>
+                                <span class="font-medium text-text-primary">Credit/Debit Card</span>
+                            </div>
+                        </label>
+
+                        <label class="flex items-center p-4 border border-border rounded-lg cursor-pointer hover:border-primary transition-colors">
+                            <input type="radio" name="payment" value="paypal" class="text-primary focus:ring-primary-500" />
+                            <div class="ml-3 flex items-center space-x-3">
+                                <img src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&fit=crop&w=32&h=32&q=80" alt="PayPal" class="w-6 h-6 rounded" onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;" />
+                                <span class="font-medium text-text-primary">PayPal</span>
+                            </div>
+                        </label>
+
+                        <label class="flex items-center p-4 border border-border rounded-lg cursor-pointer hover:border-primary transition-colors">
+                            <input type="radio" name="payment" value="apple" class="text-primary focus:ring-primary-500" />
+                            <div class="ml-3 flex items-center space-x-3">
+                                <svg class="w-6 h-6 text-text-primary" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+                                </svg>
+                                <span class="font-medium text-text-primary">Apple Pay</span>
+                            </div>
+                        </label>
+                    </div>
+
+                    <!-- Card Details Form -->
+                    <div id="cardForm" class="space-y-4">
+                        <div>
+                            <label for="cardNumber" class="block text-sm font-medium text-text-primary mb-2">Card Number</label>
+                            <div class="relative">
+                                <input type="text" id="cardNumber" name="cardNumber" class="input-field pr-12" placeholder="1234 5678 9012 3456" maxlength="19" />
+                                <div class="absolute right-3 top-1/2 transform -translate-y-1/2 flex space-x-1">
+                                    <img src="https://images.pexels.com/photos/164501/pexels-photo-164501.jpeg?auto=compress&cs=tinysrgb&w=24&h=16&fit=crop" alt="Visa" class="w-6 h-4 rounded" onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label for="expiryDate" class="block text-sm font-medium text-text-primary mb-2">Expiry Date</label>
+                                <input type="text" id="expiryDate" name="expiryDate" class="input-field" placeholder="MM/YY" maxlength="5" />
+                            </div>
+                            <div>
+                                <label for="cvv" class="block text-sm font-medium text-text-primary mb-2">CVV</label>
+                                <input type="text" id="cvv" name="cvv" class="input-field" placeholder="123" maxlength="4" />
+                            </div>
+                        </div>
+
+                        <div>
+                            <label for="cardName" class="block text-sm font-medium text-text-primary mb-2">Cardholder Name</label>
+                            <input type="text" id="cardName" name="cardName" class="input-field" placeholder="John Doe" />
+                        </div>
+
+                        <div class="flex items-center">
+                            <input type="checkbox" id="saveCard" class="rounded border-border text-primary focus:ring-primary-500" />
+                            <label for="saveCard" class="ml-3 text-sm text-secondary-700">Save this card for future purchases</label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Continue Button -->
+                <div class="flex space-x-4">
+                    <a href="shopping_cart.html" class="flex-1 bg-secondary-100 text-secondary-700 py-4 rounded-lg font-medium text-center hover:bg-secondary-200 transition-colors">
+                        Back to Cart
+                    </a>
+                    <button onclick="proceedToReview()" class="flex-1 bg-primary text-white py-4 rounded-lg font-medium hover:bg-primary-700 transition-colors">
+                        Review Order
+                    </button>
+                </div>
+            </div>
+
+            <!-- Order Summary Sidebar -->
+            <div class="lg:col-span-5 mt-8 lg:mt-0">
+                <div class="bg-surface rounded-lg shadow-card p-6 sticky top-24">
+                    <h2 class="text-lg font-semibold text-text-primary mb-4">Order Summary</h2>
+                    
+                    <!-- Cart Items -->
+                    <div class="space-y-4 mb-6">
+                        <div class="flex items-center space-x-4">
+                            <div class="w-16 h-16 bg-secondary-100 rounded-lg overflow-hidden">
+                                <img src="https://images.pexels.com/photos/788946/pexels-photo-788946.jpeg?auto=compress&cs=tinysrgb&w=64&h=64&fit=crop" alt="Wireless Headphones" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;" />
+                            </div>
+                            <div class="flex-1">
+                                <h3 class="font-medium text-text-primary">Premium Wireless Headphones</h3>
+                                <p class="text-sm text-secondary-600">Qty: 1</p>
+                            </div>
+                            <div class="text-right">
+                                <p class="font-medium text-text-primary">$89.99</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center space-x-4">
+                            <div class="w-16 h-16 bg-secondary-100 rounded-lg overflow-hidden">
+                                <img src="https://images.pixabay.com/photo-2016-03-27-19-32/smartphone-1283938_1280.jpg?auto=compress&cs=tinysrgb&w=64&h=64&fit=crop" alt="Smartphone" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;" />
+                            </div>
+                            <div class="flex-1">
+                                <h3 class="font-medium text-text-primary">Latest Smartphone 128GB</h3>
+                                <p class="text-sm text-secondary-600">Qty: 1</p>
+                            </div>
+                            <div class="text-right">
+                                <p class="font-medium text-text-primary">$599.99</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center space-x-4">
+                            <div class="w-16 h-16 bg-secondary-100 rounded-lg overflow-hidden">
+                                <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=64&h=64&q=80" alt="Running Shoes" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;" />
+                            </div>
+                            <div class="flex-1">
+                                <h3 class="font-medium text-text-primary">Professional Running Shoes</h3>
+                                <p class="text-sm text-secondary-600">Qty: 1</p>
+                            </div>
+                            <div class="text-right">
+                                <p class="font-medium text-text-primary">$129.99</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Promo Code -->
+                    <div class="mb-6">
+                        <div class="flex space-x-2">
+                            <input type="text" placeholder="Promo code" class="flex-1 px-3 py-2 border border-border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary-500" />
+                            <button class="bg-secondary-100 text-secondary-700 px-4 py-2 rounded-lg text-sm font-medium hover:bg-secondary-200 transition-colors">
+                                Apply
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Price Breakdown -->
+                    <div class="space-y-3 border-t border-border pt-4">
+                        <div class="flex justify-between text-sm">
+                            <span class="text-secondary-600">Subtotal</span>
+                            <span class="text-text-primary">$819.97</span>
+                        </div>
+                        <div class="flex justify-between text-sm">
+                            <span class="text-secondary-600">Shipping</span>
+                            <span class="text-text-primary">$5.99</span>
+                        </div>
+                        <div class="flex justify-between text-sm">
+                            <span class="text-secondary-600">Tax</span>
+                            <span class="text-text-primary">$65.60</span>
+                        </div>
+                        <div class="flex justify-between text-sm text-success-600">
+                            <span>Discount (SAVE10)</span>
+                            <span>-$82.00</span>
+                        </div>
+                        <div class="border-t border-border pt-3">
+                            <div class="flex justify-between">
+                                <span class="text-lg font-semibold text-text-primary">Total</span>
+                                <span class="text-lg font-semibold text-text-primary">$809.56</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Security Notice -->
+                    <div class="mt-6 p-4 bg-success-50 rounded-lg">
+                        <div class="flex items-center space-x-2 text-success-600">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/>
+                            </svg>
+                            <span class="text-sm font-medium">Your payment information is secure</span>
+                        </div>
+                        <p class="text-xs text-success-600 mt-1">Protected by 256-bit SSL encryption</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Loading Overlay -->
+    <div id="loadingOverlay" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden">
+        <div class="flex items-center justify-center h-full">
+            <div class="bg-surface rounded-lg p-8 text-center">
+                <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
+                <p class="text-text-primary font-medium">Processing your order...</p>
+                <p class="text-sm text-secondary-600 mt-2">Please don't close this window</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div id="successModal" class="fixed inset-0 z-50 hidden">
+        <div class="absolute inset-0 bg-black bg-opacity-50"></div>
+        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-surface rounded-lg p-8 max-w-md w-full mx-4">
+            <div class="text-center">
+                <div class="w-16 h-16 bg-success-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <svg class="w-8 h-8 text-success-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                    </svg>
+                </div>
+                <h3 class="text-xl font-semibold text-text-primary mb-2">Order Confirmed!</h3>
+                <p class="text-secondary-600 mb-4">Your order #FS-2025-001234 has been successfully placed.</p>
+                <div class="bg-secondary-50 rounded-lg p-4 mb-6">
+                    <p class="text-sm text-secondary-700">
+                        <strong>Estimated delivery:</strong> January 15-17, 2025<br />
+                        <strong>Tracking number:</strong> TRK123456789
+                    </p>
+                </div>
+                <div class="flex space-x-3">
+                    <a href="product_catalog_browse.html" class="flex-1 bg-secondary-100 text-secondary-700 py-3 rounded-lg font-medium text-center hover:bg-secondary-200 transition-colors">
+                        Continue Shopping
+                    </a>
+                    <a href="user_account_dashboard.html" class="flex-1 bg-primary text-white py-3 rounded-lg font-medium text-center hover:bg-primary-700 transition-colors">
+                        View Order
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleAddressForm() {
+            const form = document.getElementById('newAddressForm');
+            form.classList.toggle('hidden');
+        }
+
+        function proceedToReview() {
+            // Update progress indicator
+            updateProgressStep(2);
+            
+            // Show loading
+            showLoading();
+            
+            // Simulate processing
+            setTimeout(() => {
+                hideLoading();
+                showSuccessModal();
+            }, 2000);
+        }
+
+        function updateProgressStep(step) {
+            // Reset all steps
+            const steps = document.querySelectorAll('.w-8.h-8');
+            steps.forEach((stepEl, index) => {
+                if (index + 1 <= step) {
+                    stepEl.classList.remove('bg-secondary-200', 'text-secondary-600');
+                    stepEl.classList.add('bg-primary', 'text-white');
+                } else {
+                    stepEl.classList.remove('bg-primary', 'text-white');
+                    stepEl.classList.add('bg-secondary-200', 'text-secondary-600');
+                }
+            });
+        }
+
+        function showLoading() {
+            document.getElementById('loadingOverlay').classList.remove('hidden');
+        }
+
+        function hideLoading() {
+            document.getElementById('loadingOverlay').classList.add('hidden');
+        }
+
+        function showSuccessModal() {
+            document.getElementById('successModal').classList.remove('hidden');
+        }
+
+        // Form validation
+        document.addEventListener('DOMContentLoaded', function() {
+            // Card number formatting
+            const cardNumberInput = document.getElementById('cardNumber');
+            cardNumberInput.addEventListener('input', function(e) {
+                let value = e.target.value.replace(/\s/g, '').replace(/[^0-9]/gi, '');
+                let formattedValue = value.match(/.{1,4}/g)?.join(' ') || value;
+                e.target.value = formattedValue;
+            });
+
+            // Expiry date formatting
+            const expiryInput = document.getElementById('expiryDate');
+            expiryInput.addEventListener('input', function(e) {
+                let value = e.target.value.replace(/\D/g, '');
+                if (value.length >= 2) {
+                    value = value.substring(0, 2) + '/' + value.substring(2, 4);
+                }
+                e.target.value = value;
+            });
+
+            // CVV validation
+            const cvvInput = document.getElementById('cvv');
+            cvvInput.addEventListener('input', function(e) {
+                e.target.value = e.target.value.replace(/\D/g, '');
+            });
+
+            // Payment method toggle
+            const paymentRadios = document.querySelectorAll('input[name="payment"]');
+            const cardForm = document.getElementById('cardForm');
+            
+            paymentRadios.forEach(radio => {
+                radio.addEventListener('change', function() {
+                    if (this.value === 'card') {
+                        cardForm.classList.remove('hidden');
+                    } else {
+                        cardForm.classList.add('hidden');
+                    }
+                });
+            });
+
+            // Real-time shipping cost update
+            const shippingRadios = document.querySelectorAll('input[name="shipping"]');
+            shippingRadios.forEach(radio => {
+                radio.addEventListener('change', updateOrderTotal);
+            });
+        });
+
+        function updateOrderTotal() {
+            // This would typically make an API call to recalculate totals
+            // For demo purposes, we'll just show the concept
+            console.log('Updating order total...');
+        }
+
+        // Auto-save form data to localStorage
+        function saveFormData() {
+            const formData = {
+                email: document.getElementById('email').value,
+                selectedAddress: document.querySelector('input[name="address"]:checked')?.value,
+                selectedShipping: document.querySelector('input[name="shipping"]:checked')?.value,
+                selectedPayment: document.querySelector('input[name="payment"]:checked')?.value
+            };
+            localStorage.setItem('checkoutFormData', JSON.stringify(formData));
+        }
+
+        // Load saved form data
+        function loadFormData() {
+            const savedData = localStorage.getItem('checkoutFormData');
+            if (savedData) {
+                const data = JSON.parse(savedData);
+                if (data.email) document.getElementById('email').value = data.email;
+                // Restore other selections...
+            }
+        }
+
+        // Initialize form data loading
+        document.addEventListener('DOMContentLoaded', loadFormData);
+
+        // Save form data on input changes
+        document.addEventListener('input', saveFormData);
+        document.addEventListener('change', saveFormData);
+    </script>
+</body>
+</html>

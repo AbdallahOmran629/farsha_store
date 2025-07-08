@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Account - Farsha Store</title>
+    <link rel="stylesheet" href="../css/main.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<script type="module" src="https://static.rocket.new/rocket-web.js?_cfg=https%3A%2F%2Ffarshasto9019back.builtwithrocket.new&_be=https%3A%2F%2Fapplication.rocket.new&_v=0.1.5"></script>
+</head>
+<body class="bg-background min-h-screen">
+    <!-- Sticky Header -->
+    <header class="sticky top-0 z-50 bg-surface border-b border-border shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <a href="product_catalog_browse.html" class="flex items-center space-x-2">
+                        <svg class="w-8 h-8 text-primary" viewBox="0 0 32 32" fill="currentColor">
+                            <path d="M16 2L4 8v16l12 6 12-6V8L16 2zm0 4l8 4v12l-8 4-8-4V10l8-4z"/>
+                            <circle cx="16" cy="16" r="4"/>
+                        </svg>
+                        <span class="text-xl font-bold text-primary">Farsha Store</span>
+                    </a>
+                </div>
+
+                <!-- Search Bar -->
+                <div class="flex-1 max-w-2xl mx-8 hidden md:block">
+                    <div class="relative">
+                        <input type="text" placeholder="Search products..." class="w-full pl-10 pr-4 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500" />
+                        <svg class="absolute left-3 top-2.5 w-5 h-5 text-secondary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- Navigation Icons -->
+                <div class="flex items-center space-x-4">
+                    <!-- Mobile Search -->
+                    <button class="md:hidden p-2 text-secondary-600 hover:text-primary transition-colors">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                        </svg>
+                    </button>
+
+                    <!-- User Account - Active -->
+                    <a href="user_account_dashboard.html" class="p-2 text-primary bg-primary-50 rounded-lg transition-colors">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+                        </svg>
+                    </a>
+
+                    <!-- Shopping Cart -->
+                    <a href="shopping_cart.html" class="relative p-2 text-secondary-600 hover:text-primary transition-colors">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-2.5 5M7 13l2.5 5m6-5v6a2 2 0 01-2 2H9a2 2 0 01-2-2v-6m8 0V9a2 2 0 00-2-2H9a2 2 0 00-2 2v4.01"/>
+                        </svg>
+                        <span class="absolute -top-1 -right-1 bg-accent text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">3</span>
+                    </a>
+
+                    <!-- Mobile Menu -->
+                    <button class="md:hidden p-2 text-secondary-600 hover:text-primary transition-colors" onclick="toggleMobileMenu()">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="hidden md:hidden bg-surface border-t border-border">
+            <div class="px-4 py-2 space-y-2">
+                <div class="relative">
+                    <input type="text" placeholder="Search products..." class="w-full pl-10 pr-4 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500" />
+                    <svg class="absolute left-3 top-2.5 w-5 h-5 text-secondary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                    </svg>
+                </div>
+                <nav class="space-y-1">
+                    <a href="product_catalog_browse.html" class="block px-3 py-2 text-secondary-600 hover:text-primary">Browse Products</a>
+                    <a href="user_authentication.html" class="block px-3 py-2 text-secondary-600 hover:text-primary">Sign Out</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+        <!-- User Profile Summary -->
+        <div class="bg-surface rounded-lg shadow-card p-6 mb-6">
+            <div class="flex items-center space-x-4">
+                <div class="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center">
+                    <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=100&q=80" alt="User Avatar" class="w-16 h-16 rounded-full object-cover" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;" />
+                </div>
+                <div class="flex-1">
+                    <h1 class="text-2xl font-bold text-text-primary">Welcome back, John!</h1>
+                    <p class="text-secondary-600">john.doe@email.com</p>
+                    <div class="flex items-center space-x-4 mt-2">
+                        <span class="text-sm text-secondary-600">Member since March 2024</span>
+                        <span class="bg-accent-100 text-accent-800 text-xs font-medium px-2 py-1 rounded-full">Gold Member</span>
+                    </div>
+                </div>
+                <button onclick="showEditProfile()" class="hidden sm:block bg-secondary-100 text-secondary-700 px-4 py-2 rounded-lg font-medium hover:bg-secondary-200 transition-colors">
+                    Edit Profile
+                </button>
+            </div>
+        </div>
+
+        <!-- Quick Stats -->
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+            <div class="bg-surface rounded-lg shadow-card p-4">
+                <div class="flex items-center">
+                    <div class="p-2 bg-primary-100 rounded-lg">
+                        <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/>
+                        </svg>
+                    </div>
+                    <div class="ml-4">
+                        <p class="text-2xl font-bold text-text-primary">24</p>
+                        <p class="text-sm text-secondary-600">Total Orders</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-surface rounded-lg shadow-card p-4">
+                <div class="flex items-center">
+                    <div class="p-2 bg-accent-100 rounded-lg">
+                        <svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+                        </svg>
+                    </div>
+                    <div class="ml-4">
+                        <p class="text-2xl font-bold text-text-primary">12</p>
+                        <p class="text-sm text-secondary-600">Wishlist Items</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-surface rounded-lg shadow-card p-4">
+                <div class="flex items-center">
+                    <div class="p-2 bg-success-100 rounded-lg">
+                        <svg class="w-6 h-6 text-success" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"/>
+                        </svg>
+                    </div>
+                    <div class="ml-4">
+                        <p class="text-2xl font-bold text-text-primary">$2,450</p>
+                        <p class="text-sm text-secondary-600">Total Spent</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-surface rounded-lg shadow-card p-4">
+                <div class="flex items-center">
+                    <div class="p-2 bg-error-100 rounded-lg">
+                        <svg class="w-6 h-6 text-error" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                        </svg>
+                    </div>
+                    <div class="ml-4">
+                        <p class="text-2xl font-bold text-text-primary">850</p>
+                        <p class="text-sm text-secondary-600">Loyalty Points</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Account Menu Tabs -->
+        <div class="bg-surface rounded-lg shadow-card mb-6">
+            <div class="border-b border-border">
+                <nav class="flex space-x-8 px-6" aria-label="Account sections">
+                    <button onclick="showSection('orders')" class="account-tab active py-4 px-1 border-b-2 border-primary text-primary font-medium text-sm">
+                        Orders
+                    </button>
+                    <button onclick="showSection('wishlist')" class="account-tab py-4 px-1 border-b-2 border-transparent text-secondary-600 hover:text-primary hover:border-secondary-300 font-medium text-sm">
+                        Wishlist
+                    </button>
+                    <button onclick="showSection('addresses')" class="account-tab py-4 px-1 border-b-2 border-transparent text-secondary-600 hover:text-primary hover:border-secondary-300 font-medium text-sm">
+                        Addresses
+                    </button>
+                    <button onclick="showSection('settings')" class="account-tab py-4 px-1 border-b-2 border-transparent text-secondary-600 hover:text-primary hover:border-secondary-300 font-medium text-sm">
+                        Settings
+                    </button>
+                </nav>
+            </div>
+
+            <!-- Orders Section -->
+            <div id="ordersSection" class="account-section p-6">
+                <div class="flex items-center justify-between mb-6">
+                    <h2 class="text-lg font-semibold text-text-primary">Recent Orders</h2>
+                    <div class="relative">
+                        <input type="text" placeholder="Search orders..." class="pl-10 pr-4 py-2 border border-border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary-500" />
+                        <svg class="absolute left-3 top-2.5 w-4 h-4 text-secondary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                        </svg>
+                    </div>
+                </div>
+
+                <div class="space-y-4">
+                    <!-- Order Item 1 -->
+                    <div class="border border-border rounded-lg p-4 hover:shadow-md transition-shadow">
+                        <div class="flex items-center justify-between mb-3">
+                            <div class="flex items-center space-x-3">
+                                <span class="text-sm font-medium text-text-primary">Order #FS-2024-001</span>
+                                <span class="bg-success-100 text-success-800 text-xs font-medium px-2 py-1 rounded-full">Delivered</span>
+                            </div>
+                            <span class="text-sm text-secondary-600">March 15, 2024</span>
+                        </div>
+                        
+                        <div class="flex items-center space-x-4 mb-3">
+                            <img src="https://images.pexels.com/photos/788946/pexels-photo-788946.jpeg?auto=compress&cs=tinysrgb&w=100" alt="Product" class="w-12 h-12 rounded-lg object-cover" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;" />
+                            <div class="flex-1">
+                                <p class="text-sm font-medium text-text-primary">Premium Wireless Headphones + 2 more items</p>
+                                <p class="text-sm text-secondary-600">Total: $249.97</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center justify-between">
+                            <button class="text-sm text-primary hover:text-primary-700 font-medium">Track Package</button>
+                            <div class="flex space-x-2">
+                                <button onclick="reorderItems()" class="bg-secondary-100 text-secondary-700 px-3 py-1 rounded text-sm font-medium hover:bg-secondary-200 transition-colors">
+                                    Reorder
+                                </button>
+                                <button class="bg-primary text-white px-3 py-1 rounded text-sm font-medium hover:bg-primary-700 transition-colors">
+                                    View Details
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Order Item 2 -->
+                    <div class="border border-border rounded-lg p-4 hover:shadow-md transition-shadow">
+                        <div class="flex items-center justify-between mb-3">
+                            <div class="flex items-center space-x-3">
+                                <span class="text-sm font-medium text-text-primary">Order #FS-2024-002</span>
+                                <span class="bg-warning-100 text-warning-800 text-xs font-medium px-2 py-1 rounded-full">Processing</span>
+                            </div>
+                            <span class="text-sm text-secondary-600">March 18, 2024</span>
+                        </div>
+                        
+                        <div class="flex items-center space-x-4 mb-3">
+                            <img src="https://images.pixabay.com/photo-2016/03/27/19/32/smartphone-1283938_1280.jpg" alt="Product" class="w-12 h-12 rounded-lg object-cover" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;" />
+                            <div class="flex-1">
+                                <p class="text-sm font-medium text-text-primary">Latest Smartphone 128GB</p>
+                                <p class="text-sm text-secondary-600">Total: $599.99</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center justify-between">
+                            <button class="text-sm text-primary hover:text-primary-700 font-medium">Track Package</button>
+                            <div class="flex space-x-2">
+                                <button class="bg-error-100 text-error-700 px-3 py-1 rounded text-sm font-medium hover:bg-error-200 transition-colors">
+                                    Cancel Order
+                                </button>
+                                <button class="bg-primary text-white px-3 py-1 rounded text-sm font-medium hover:bg-primary-700 transition-colors">
+                                    View Details
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Order Item 3 -->
+                    <div class="border border-border rounded-lg p-4 hover:shadow-md transition-shadow">
+                        <div class="flex items-center justify-between mb-3">
+                            <div class="flex items-center space-x-3">
+                                <span class="text-sm font-medium text-text-primary">Order #FS-2024-003</span>
+                                <span class="bg-primary-100 text-primary-800 text-xs font-medium px-2 py-1 rounded-full">Shipped</span>
+                            </div>
+                            <span class="text-sm text-secondary-600">March 20, 2024</span>
+                        </div>
+                        
+                        <div class="flex items-center space-x-4 mb-3">
+                            <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=100&q=80" alt="Product" class="w-12 h-12 rounded-lg object-cover" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;" />
+                            <div class="flex-1">
+                                <p class="text-sm font-medium text-text-primary">Professional Running Shoes</p>
+                                <p class="text-sm text-secondary-600">Total: $129.99</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center justify-between">
+                            <button class="text-sm text-primary hover:text-primary-700 font-medium">Track Package</button>
+                            <div class="flex space-x-2">
+                                <button onclick="reorderItems()" class="bg-secondary-100 text-secondary-700 px-3 py-1 rounded text-sm font-medium hover:bg-secondary-200 transition-colors">
+                                    Reorder
+                                </button>
+                                <button class="bg-primary text-white px-3 py-1 rounded text-sm font-medium hover:bg-primary-700 transition-colors">
+                                    View Details
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-center mt-6">
+                    <button class="bg-secondary-100 text-secondary-700 px-6 py-2 rounded-lg font-medium hover:bg-secondary-200 transition-colors">
+                        View All Orders
+                    </button>
+                </div>
+            </div>
+
+            <!-- Wishlist Section -->
+            <div id="wishlistSection" class="account-section p-6 hidden">
+                <div class="flex items-center justify-between mb-6">
+                    <h2 class="text-lg font-semibold text-text-primary">My Wishlist</h2>
+                    <button class="text-sm text-secondary-600 hover:text-primary">Clear All</button>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <!-- Wishlist Item 1 -->
+                    <div class="border border-border rounded-lg p-4 hover:shadow-md transition-shadow">
+                        <div class="relative">
+                            <img src="https://images.pexels.com/photos/356056/pexels-photo-356056.jpeg?auto=compress&cs=tinysrgb&w=300" alt="Laptop" class="w-full h-32 object-cover rounded-lg mb-3" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;" />
+                            <button class="absolute top-2 right-2 p-1 bg-surface rounded-full shadow-sm hover:bg-error-50 transition-colors">
+                                <svg class="w-4 h-4 text-error" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+                                </svg>
+                            </button>
+                            <div class="absolute top-2 left-2">
+                                <span class="bg-success-100 text-success-800 text-xs font-medium px-2 py-1 rounded-full">In Stock</span>
+                            </div>
+                        </div>
+                        <h3 class="font-medium text-text-primary mb-2">High Performance Laptop 16GB RAM</h3>
+                        <div class="flex items-center justify-between mb-3">
+                            <div class="flex items-center space-x-2">
+                                <span class="text-lg font-bold text-text-primary">$849.99</span>
+                                <span class="text-sm text-secondary-500 line-through">$999.99</span>
+                            </div>
+                            <span class="text-xs text-success-600 bg-success-50 px-2 py-1 rounded-full">-15%</span>
+                        </div>
+                        <button onclick="addToCartFromWishlist()" class="w-full bg-primary text-white py-2 rounded-lg font-medium hover:bg-primary-700 transition-colors">
+                            Add to Cart
+                        </button>
+                    </div>
+
+                    <!-- Wishlist Item 2 -->
+                    <div class="border border-border rounded-lg p-4 hover:shadow-md transition-shadow">
+                        <div class="relative">
+                            <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=300&q=80" alt="Headphones" class="w-full h-32 object-cover rounded-lg mb-3" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;" />
+                            <button class="absolute top-2 right-2 p-1 bg-surface rounded-full shadow-sm hover:bg-error-50 transition-colors">
+                                <svg class="w-4 h-4 text-error" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+                                </svg>
+                            </button>
+                            <div class="absolute top-2 left-2">
+                                <span class="bg-warning-100 text-warning-800 text-xs font-medium px-2 py-1 rounded-full">Low Stock</span>
+                            </div>
+                        </div>
+                        <h3 class="font-medium text-text-primary mb-2">Noise Cancelling Headphones</h3>
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-lg font-bold text-text-primary">$199.99</span>
+                            <span class="text-xs text-warning-600 bg-warning-50 px-2 py-1 rounded-full">Price ↑ $20</span>
+                        </div>
+                        <button onclick="addToCartFromWishlist()" class="w-full bg-primary text-white py-2 rounded-lg font-medium hover:bg-primary-700 transition-colors">
+                            Add to Cart
+                        </button>
+                    </div>
+
+                    <!-- Wishlist Item 3 -->
+                    <div class="border border-border rounded-lg p-4 hover:shadow-md transition-shadow opacity-60">
+                        <div class="relative">
+                            <img src="https://images.pixabay.com/photo/2017/08/06/12/06/people-2591874_1280.jpg" alt="Watch" class="w-full h-32 object-cover rounded-lg mb-3" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;" />
+                            <button class="absolute top-2 right-2 p-1 bg-surface rounded-full shadow-sm hover:bg-error-50 transition-colors">
+                                <svg class="w-4 h-4 text-error" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+                                </svg>
+                            </button>
+                            <div class="absolute top-2 left-2">
+                                <span class="bg-error-100 text-error-800 text-xs font-medium px-2 py-1 rounded-full">Out of Stock</span>
+                            </div>
+                        </div>
+                        <h3 class="font-medium text-text-primary mb-2">Smart Fitness Watch</h3>
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-lg font-bold text-text-primary">$299.99</span>
+                        </div>
+                        <button disabled class="w-full bg-secondary-200 text-secondary-500 py-2 rounded-lg font-medium cursor-not-allowed">
+                            Out of Stock
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Addresses Section -->
+            <div id="addressesSection" class="account-section p-6 hidden">
+                <div class="flex items-center justify-between mb-6">
+                    <h2 class="text-lg font-semibold text-text-primary">Saved Addresses</h2>
+                    <button onclick="showAddAddress()" class="bg-primary text-white px-4 py-2 rounded-lg font-medium hover:bg-primary-700 transition-colors">
+                        Add New Address
+                    </button>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <!-- Default Address -->
+                    <div class="border-2 border-primary rounded-lg p-4">
+                        <div class="flex items-center justify-between mb-3">
+                            <div class="flex items-center space-x-2">
+                                <span class="text-sm font-medium text-text-primary">Home</span>
+                                <span class="bg-primary-100 text-primary-800 text-xs font-medium px-2 py-1 rounded-full">Default</span>
+                            </div>
+                            <div class="flex space-x-2">
+                                <button class="text-sm text-primary hover:text-primary-700">Edit</button>
+                                <button class="text-sm text-error hover:text-error-700">Delete</button>
+                            </div>
+                        </div>
+                        <div class="text-sm text-secondary-600 space-y-1">
+                            <p class="font-medium text-text-primary">John Doe</p>
+                            <p>123 Main Street, Apt 4B</p>
+                            <p>New York, NY 10001</p>
+                            <p>United States</p>
+                            <p>Phone: +1 (555) 123-4567</p>
+                        </div>
+                    </div>
+
+                    <!-- Work Address -->
+                    <div class="border border-border rounded-lg p-4">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-sm font-medium text-text-primary">Work</span>
+                            <div class="flex space-x-2">
+                                <button class="text-sm text-primary hover:text-primary-700">Edit</button>
+                                <button class="text-sm text-error hover:text-error-700">Delete</button>
+                            </div>
+                        </div>
+                        <div class="text-sm text-secondary-600 space-y-1">
+                            <p class="font-medium text-text-primary">John Doe</p>
+                            <p>456 Business Ave, Suite 200</p>
+                            <p>New York, NY 10002</p>
+                            <p>United States</p>
+                            <p>Phone: +1 (555) 987-6543</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Settings Section -->
+            <div id="settingsSection" class="account-section p-6 hidden">
+                <h2 class="text-lg font-semibold text-text-primary mb-6">Account Settings</h2>
+
+                <div class="space-y-6">
+                    <!-- Profile Information -->
+                    <div class="border border-border rounded-lg p-4">
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="font-medium text-text-primary">Profile Information</h3>
+                            <button onclick="showEditProfile()" class="text-sm text-primary hover:text-primary-700">Edit</button>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                            <div>
+                                <label class="block text-secondary-600 mb-1">First Name</label>
+                                <p class="text-text-primary">John</p>
+                            </div>
+                            <div>
+                                <label class="block text-secondary-600 mb-1">Last Name</label>
+                                <p class="text-text-primary">Doe</p>
+                            </div>
+                            <div>
+                                <label class="block text-secondary-600 mb-1">Email</label>
+                                <p class="text-text-primary">john.doe@email.com</p>
+                            </div>
+                            <div>
+                                <label class="block text-secondary-600 mb-1">Phone</label>
+                                <p class="text-text-primary">+1 (555) 123-4567</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Password -->
+                    <div class="border border-border rounded-lg p-4">
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="font-medium text-text-primary">Password</h3>
+                            <button onclick="showChangePassword()" class="text-sm text-primary hover:text-primary-700">Change</button>
+                        </div>
+                        <p class="text-sm text-secondary-600">Last changed 3 months ago</p>
+                    </div>
+
+                    <!-- Notification Preferences -->
+                    <div class="border border-border rounded-lg p-4">
+                        <h3 class="font-medium text-text-primary mb-4">Notification Preferences</h3>
+                        <div class="space-y-3">
+                            <label class="flex items-center">
+                                <input type="checkbox" class="rounded border-border text-primary focus:ring-primary-500" checked />
+                                <span class="ml-3 text-sm text-secondary-700">Order updates and shipping notifications</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" class="rounded border-border text-primary focus:ring-primary-500" checked />
+                                <span class="ml-3 text-sm text-secondary-700">Price drop alerts for wishlist items</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" class="rounded border-border text-primary focus:ring-primary-500" />
+                                <span class="ml-3 text-sm text-secondary-700">Promotional emails and special offers</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" class="rounded border-border text-primary focus:ring-primary-500" />
+                                <span class="ml-3 text-sm text-secondary-700">New product recommendations</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Privacy Settings -->
+                    <div class="border border-border rounded-lg p-4">
+                        <h3 class="font-medium text-text-primary mb-4">Privacy Settings</h3>
+                        <div class="space-y-3">
+                            <label class="flex items-center">
+                                <input type="checkbox" class="rounded border-border text-primary focus:ring-primary-500" checked />
+                                <span class="ml-3 text-sm text-secondary-700">Allow personalized product recommendations</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" class="rounded border-border text-primary focus:ring-primary-500" />
+                                <span class="ml-3 text-sm text-secondary-700">Share purchase history for better recommendations</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" class="rounded border-border text-primary focus:ring-primary-500" />
+                                <span class="ml-3 text-sm text-secondary-700">Allow third-party analytics</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Account Actions -->
+                    <div class="border border-border rounded-lg p-4">
+                        <h3 class="font-medium text-text-primary mb-4">Account Actions</h3>
+                        <div class="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-4">
+                            <button class="bg-secondary-100 text-secondary-700 px-4 py-2 rounded-lg font-medium hover:bg-secondary-200 transition-colors">
+                                Download My Data
+                            </button>
+                            <button class="bg-error-100 text-error-700 px-4 py-2 rounded-lg font-medium hover:bg-error-200 transition-colors">
+                                Delete Account
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Personalized Recommendations -->
+        <div class="bg-surface rounded-lg shadow-card p-6">
+            <div class="flex items-center justify-between mb-6">
+                <h2 class="text-lg font-semibold text-text-primary">Recommended for You</h2>
+                <a href="product_catalog_browse.html" class="text-sm text-primary hover:text-primary-700 font-medium">View All</a>
+            </div>
+
+            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+                <!-- Recommendation 1 -->
+                <div class="group">
+                    <div class="relative aspect-square overflow-hidden rounded-lg mb-3">
+                        <img src="https://images.pexels.com/photos/1649771/pexels-photo-1649771.jpeg?auto=compress&cs=tinysrgb&w=300" alt="Wireless Mouse" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;" />
+                        <button class="absolute top-2 right-2 p-1 bg-surface rounded-full shadow-sm opacity-0 group-hover:opacity-100 transition-opacity">
+                            <svg class="w-4 h-4 text-secondary-600 hover:text-error" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+                            </svg>
+                        </button>
+                    </div>
+                    <a href="product_detail.html" class="block">
+                        <h3 class="text-sm font-medium text-text-primary mb-1 line-clamp-2 hover:text-primary transition-colors">Ergonomic Wireless Mouse</h3>
+                    </a>
+                    <p class="text-sm font-bold text-text-primary">$29.99</p>
+                </div>
+
+                <!-- Recommendation 2 -->
+                <div class="group">
+                    <div class="relative aspect-square overflow-hidden rounded-lg mb-3">
+                        <img src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?auto=format&fit=crop&w=300&q=80" alt="Keyboard" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;" />
+                        <button class="absolute top-2 right-2 p-1 bg-surface rounded-full shadow-sm opacity-0 group-hover:opacity-100 transition-opacity">
+                            <svg class="w-4 h-4 text-secondary-600 hover:text-error" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+                            </svg>
+                        </button>
+                    </div>
+                    <a href="product_detail.html" class="block">
+                        <h3 class="text-sm font-medium text-text-primary mb-1 line-clamp-2 hover:text-primary transition-colors">Mechanical Gaming Keyboard</h3>
+                    </a>
+                    <p class="text-sm font-bold text-text-primary">$89.99</p>
+                </div>
+
+                <!-- Recommendation 3 -->
+                <div class="group">
+                    <div class="relative aspect-square overflow-hidden rounded-lg mb-3">
+                        <img src="https://images.pixabay.com/photo/2018/09/17/14/27/headphones-3683983_1280.jpg" alt="Gaming Headset" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;" />
+                        <button class="absolute top-2 right-2 p-1 bg-surface rounded-full shadow-sm opacity-0 group-hover:opacity-100 transition-opacity">
+                            <svg class="w-4 h-4 text-secondary-600 hover:text-error" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+                            </svg>
+                        </button>
+                    </div>
+                    <a href="product_detail.html" class="block">
+                        <h3 class="text-sm font-medium text-text-primary mb-1 line-clamp-2 hover:text-primary transition-colors">Gaming Headset with Mic</h3>
+                    </a>
+                    <p class="text-sm font-bold text-text-primary">$59.99</p>
+                </div>
+
+                <!-- Recommendation 4 -->
+                <div class="group">
+                    <div class="relative aspect-square overflow-hidden rounded-lg mb-3">
+                        <img src="https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?auto=format&fit=crop&w=300&q=80" alt="Monitor" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;" />
+                        <button class="absolute top-2 right-2 p-1 bg-surface rounded-full shadow-sm opacity-0 group-hover:opacity-100 transition-opacity">
+                            <svg class="w-4 h-4 text-secondary-600 hover:text-error" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+                            </svg>
+                        </button>
+                    </div>
+                    <a href="product_detail.html" class="block">
+                        <h3 class="text-sm font-medium text-text-primary mb-1 line-clamp-2 hover:text-primary transition-colors">4K Ultra HD Monitor</h3>
+                    </a>
+                    <p class="text-sm font-bold text-text-primary">$299.99</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Edit Profile Modal -->
+    <div id="editProfileModal" class="fixed inset-0 z-50 hidden">
+        <div class="absolute inset-0 bg-black bg-opacity-50" onclick="closeEditProfile()"></div>
+        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-surface rounded-lg shadow-elevated p-6 w-full max-w-md mx-4">
+            <div class="flex items-center justify-between mb-4">
+                <h3 class="text-lg font-semibold text-text-primary">Edit Profile</h3>
+                <button onclick="closeEditProfile()" class="p-2 hover:bg-secondary-100 rounded-lg">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                    </svg>
+                </button>
+            </div>
+            
+            <form class="space-y-4">
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-medium text-text-primary mb-2">First Name</label>
+                        <input type="text" value="John" class="input-field" />
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-text-primary mb-2">Last Name</label>
+                        <input type="text" value="Doe" class="input-field" />
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-text-primary mb-2">Email</label>
+                    <input type="email" value="john.doe@email.com" class="input-field" />
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-text-primary mb-2">Phone</label>
+                    <input type="tel" value="+1 (555) 123-4567" class="input-field" />
+                </div>
+                
+                <div class="flex space-x-3 pt-4">
+                    <button type="button" onclick="closeEditProfile()" class="flex-1 bg-secondary-100 text-secondary-700 py-3 rounded-lg font-medium hover:bg-secondary-200 transition-colors">
+                        Cancel
+                    </button>
+                    <button type="submit" class="flex-1 bg-primary text-white py-3 rounded-lg font-medium hover:bg-primary-700 transition-colors">
+                        Save Changes
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Change Password Modal -->
+    <div id="changePasswordModal" class="fixed inset-0 z-50 hidden">
+        <div class="absolute inset-0 bg-black bg-opacity-50" onclick="closeChangePassword()"></div>
+        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-surface rounded-lg shadow-elevated p-6 w-full max-w-md mx-4">
+            <div class="flex items-center justify-between mb-4">
+                <h3 class="text-lg font-semibold text-text-primary">Change Password</h3>
+                <button onclick="closeChangePassword()" class="p-2 hover:bg-secondary-100 rounded-lg">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                    </svg>
+                </button>
+            </div>
+            
+            <form class="space-y-4">
+                <div>
+                    <label class="block text-sm font-medium text-text-primary mb-2">Current Password</label>
+                    <input type="password" class="input-field" />
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-text-primary mb-2">New Password</label>
+                    <input type="password" class="input-field" />
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-text-primary mb-2">Confirm New Password</label>
+                    <input type="password" class="input-field" />
+                </div>
+                
+                <div class="flex space-x-3 pt-4">
+                    <button type="button" onclick="closeChangePassword()" class="flex-1 bg-secondary-100 text-secondary-700 py-3 rounded-lg font-medium hover:bg-secondary-200 transition-colors">
+                        Cancel
+                    </button>
+                    <button type="submit" class="flex-1 bg-primary text-white py-3 rounded-lg font-medium hover:bg-primary-700 transition-colors">
+                        Update Password
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Add Address Modal -->
+    <div id="addAddressModal" class="fixed inset-0 z-50 hidden">
+        <div class="absolute inset-0 bg-black bg-opacity-50" onclick="closeAddAddress()"></div>
+        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-surface rounded-lg shadow-elevated p-6 w-full max-w-lg mx-4 max-h-96 overflow-y-auto">
+            <div class="flex items-center justify-between mb-4">
+                <h3 class="text-lg font-semibold text-text-primary">Add New Address</h3>
+                <button onclick="closeAddAddress()" class="p-2 hover:bg-secondary-100 rounded-lg">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                    </svg>
+                </button>
+            </div>
+            
+            <form class="space-y-4">
+                <div>
+                    <label class="block text-sm font-medium text-text-primary mb-2">Address Label</label>
+                    <input type="text" placeholder="e.g., Home, Work, etc." class="input-field" />
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-medium text-text-primary mb-2">First Name</label>
+                        <input type="text" class="input-field" />
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-text-primary mb-2">Last Name</label>
+                        <input type="text" class="input-field" />
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-text-primary mb-2">Street Address</label>
+                    <input type="text" class="input-field" />
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-medium text-text-primary mb-2">City</label>
+                        <input type="text" class="input-field" />
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-text-primary mb-2">State</label>
+                        <input type="text" class="input-field" />
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-medium text-text-primary mb-2">ZIP Code</label>
+                        <input type="text" class="input-field" />
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-text-primary mb-2">Phone</label>
+                        <input type="tel" class="input-field" />
+                    </div>
+                </div>
+                <div>
+                    <label class="flex items-center">
+                        <input type="checkbox" class="rounded border-border text-primary focus:ring-primary-500" />
+                        <span class="ml-3 text-sm text-secondary-700">Set as default address</span>
+                    </label>
+                </div>
+                
+                <div class="flex space-x-3 pt-4">
+                    <button type="button" onclick="closeAddAddress()" class="flex-1 bg-secondary-100 text-secondary-700 py-3 rounded-lg font-medium hover:bg-secondary-200 transition-colors">
+                        Cancel
+                    </button>
+                    <button type="submit" class="flex-1 bg-primary text-white py-3 rounded-lg font-medium hover:bg-primary-700 transition-colors">
+                        Save Address
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+        }
+
+        function showSection(sectionName) {
+            // Hide all sections
+            const sections = document.querySelectorAll('.account-section');
+            sections.forEach(section => section.classList.add('hidden'));
+            
+            // Show selected section
+            document.getElementById(sectionName + 'Section').classList.remove('hidden');
+            
+            // Update tab styles
+            const tabs = document.querySelectorAll('.account-tab');
+            tabs.forEach(tab => {
+                tab.classList.remove('active', 'border-primary', 'text-primary');
+                tab.classList.add('border-transparent', 'text-secondary-600');
+            });
+            
+            // Activate selected tab
+            event.target.classList.add('active', 'border-primary', 'text-primary');
+            event.target.classList.remove('border-transparent', 'text-secondary-600');
+        }
+
+        function showEditProfile() {
+            document.getElementById('editProfileModal').classList.remove('hidden');
+        }
+
+        function closeEditProfile() {
+            document.getElementById('editProfileModal').classList.add('hidden');
+        }
+
+        function showChangePassword() {
+            document.getElementById('changePasswordModal').classList.remove('hidden');
+        }
+
+        function closeChangePassword() {
+            document.getElementById('changePasswordModal').classList.add('hidden');
+        }
+
+        function showAddAddress() {
+            document.getElementById('addAddressModal').classList.remove('hidden');
+        }
+
+        function closeAddAddress() {
+            document.getElementById('addAddressModal').classList.add('hidden');
+        }
+
+        function reorderItems() {
+            // Simulate reorder functionality
+            alert('Items added to cart for reorder!');
+        }
+
+        function addToCartFromWishlist() {
+            // Simulate add to cart from wishlist
+            alert('Item added to cart successfully!');
+        }
+
+        // Handle form submissions
+        document.addEventListener('DOMContentLoaded', function() {
+            // Edit Profile Form
+            const editProfileForm = document.querySelector('#editProfileModal form');
+            if (editProfileForm) {
+                editProfileForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    alert('Profile updated successfully!');
+                    closeEditProfile();
+                });
+            }
+
+            // Change Password Form
+            const changePasswordForm = document.querySelector('#changePasswordModal form');
+            if (changePasswordForm) {
+                changePasswordForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    alert('Password changed successfully!');
+                    closeChangePassword();
+                });
+            }
+
+            // Add Address Form
+            const addAddressForm = document.querySelector('#addAddressModal form');
+            if (addAddressForm) {
+                addAddressForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    alert('Address added successfully!');
+                    closeAddAddress();
+                });
+            }
+        });
+
+        // Simulate real-time notifications
+        function showNotification(message, type = 'info') {
+            // This would typically integrate with a toast notification system
+            console.log(`${type.toUpperCase()}: ${message}`);
+        }
+
+        // Simulate price change notifications for wishlist
+        setTimeout(() => {
+            showNotification('Price dropped for Noise Cancelling Headphones in your wishlist!', 'success');
+        }, 3000);
+    </script>
+</body>
+</html>

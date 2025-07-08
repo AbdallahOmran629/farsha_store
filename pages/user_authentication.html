@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign In - Farsha Store</title>
+    <link rel="stylesheet" href="../css/main.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<script type="module" src="https://static.rocket.new/rocket-web.js?_cfg=https%3A%2F%2Ffarshasto9019back.builtwithrocket.new&_be=https%3A%2F%2Fapplication.rocket.new&_v=0.1.5"></script>
+</head>
+<body class="bg-background min-h-screen">
+    <!-- Simplified Header -->
+    <header class="bg-surface border-b border-border">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <a href="product_catalog_browse.html" class="flex items-center space-x-2">
+                        <svg class="w-8 h-8 text-primary" viewBox="0 0 32 32" fill="currentColor">
+                            <path d="M16 2L4 8v16l12 6 12-6V8L16 2zm0 4l8 4v12l-8 4-8-4V10l8-4z"/>
+                            <circle cx="16" cy="16" r="4"/>
+                        </svg>
+                        <span class="text-xl font-bold text-primary">Farsha Store</span>
+                    </a>
+                </div>
+
+                <!-- Language Selector -->
+                <div class="flex items-center space-x-4">
+                    <div class="relative">
+                        <select class="appearance-none bg-transparent border-none text-sm text-secondary-600 focus:outline-none pr-6">
+                            <option>English</option>
+                            <option>العربية</option>
+                            <option>Français</option>
+                        </select>
+                        <svg class="absolute right-0 top-1 w-4 h-4 text-secondary-400 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-1 flex items-center justify-center px-4 py-8 sm:py-12">
+        <div class="w-full max-w-md">
+            <!-- Auth Container -->
+            <div class="bg-surface rounded-lg shadow-card p-6 sm:p-8">
+                <!-- Tab Navigation -->
+                <div class="flex mb-6">
+                    <button id="loginTab" onclick="switchTab('login')" class="flex-1 py-3 text-center font-medium border-b-2 border-primary text-primary transition-colors">
+                        Sign In
+                    </button>
+                    <button id="registerTab" onclick="switchTab('register')" class="flex-1 py-3 text-center font-medium border-b-2 border-transparent text-secondary-600 hover:text-primary transition-colors">
+                        Register
+                    </button>
+                </div>
+
+                <!-- Social Login -->
+                <div class="space-y-3 mb-6">
+                    <button onclick="socialLogin('google')" class="w-full flex items-center justify-center px-4 py-3 border border-border rounded-lg text-sm font-medium text-secondary-700 bg-surface hover:bg-secondary-50 transition-colors">
+                        <img src="https://images.unsplash.com/photo-1573804633927-bfcbcd909acd?auto=format&fit=crop&w=24&h=24&q=80" alt="Google" class="w-5 h-5 mr-3" onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;" />
+                        Continue with Google
+                    </button>
+                    <button onclick="socialLogin('facebook')" class="w-full flex items-center justify-center px-4 py-3 border border-border rounded-lg text-sm font-medium text-secondary-700 bg-surface hover:bg-secondary-50 transition-colors">
+                        <img src="https://images.pixabay.com/photo/2021/06/15/12/17/facebook-6338507_1280.png" alt="Facebook" class="w-5 h-5 mr-3" onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;" />
+                        Continue with Facebook
+                    </button>
+                </div>
+
+                <!-- Divider -->
+                <div class="relative mb-6">
+                    <div class="absolute inset-0 flex items-center">
+                        <div class="w-full border-t border-border"></div>
+                    </div>
+                    <div class="relative flex justify-center text-sm">
+                        <span class="px-2 bg-surface text-secondary-500">Or continue with email</span>
+                    </div>
+                </div>
+
+                <!-- Login Form -->
+                <form id="loginForm" class="space-y-4">
+                    <div>
+                        <label for="loginEmail" class="block text-sm font-medium text-text-primary mb-2">Email or Username</label>
+                        <input type="email" id="loginEmail" name="email" placeholder="Enter your email or username" class="input-field" required autocomplete="email" />
+                        <div id="loginEmailError" class="hidden text-sm text-error mt-1"></div>
+                    </div>
+
+                    <div>
+                        <label for="loginPassword" class="block text-sm font-medium text-text-primary mb-2">Password</label>
+                        <div class="relative">
+                            <input type="password" id="loginPassword" name="password" placeholder="Enter your password" class="input-field pr-10" required autocomplete="current-password" />
+                            <button type="button" onclick="togglePasswordVisibility('loginPassword')" class="absolute inset-y-0 right-0 pr-3 flex items-center">
+                                <svg id="loginPasswordIcon" class="w-5 h-5 text-secondary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+                                </svg>
+                            </button>
+                        </div>
+                        <div id="loginPasswordError" class="hidden text-sm text-error mt-1"></div>
+                    </div>
+
+                    <div class="flex items-center justify-between">
+                        <label class="flex items-center">
+                            <input type="checkbox" id="rememberMe" name="remember" class="rounded border-border text-primary focus:ring-primary-500" />
+                            <span class="ml-2 text-sm text-secondary-700">Remember me</span>
+                        </label>
+                        <button type="button" onclick="showForgotPassword()" class="text-sm text-primary hover:text-primary-700 transition-colors">
+                            Forgot password?
+                        </button>
+                    </div>
+
+                    <button type="submit" id="loginSubmit" class="w-full bg-primary text-white py-3 rounded-lg font-medium hover:bg-primary-700 transition-colors focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2">
+                        Sign In
+                    </button>
+                </form>
+
+                <!-- Register Form -->
+                <form id="registerForm" class="space-y-4 hidden">
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label for="firstName" class="block text-sm font-medium text-text-primary mb-2">First Name</label>
+                            <input type="text" id="firstName" name="firstName" placeholder="First name" class="input-field" required autocomplete="given-name" />
+                            <div id="firstNameError" class="hidden text-sm text-error mt-1"></div>
+                        </div>
+                        <div>
+                            <label for="lastName" class="block text-sm font-medium text-text-primary mb-2">Last Name</label>
+                            <input type="text" id="lastName" name="lastName" placeholder="Last name" class="input-field" required autocomplete="family-name" />
+                            <div id="lastNameError" class="hidden text-sm text-error mt-1"></div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label for="registerEmail" class="block text-sm font-medium text-text-primary mb-2">Email Address</label>
+                        <input type="email" id="registerEmail" name="email" placeholder="Enter your email address" class="input-field" required autocomplete="email" />
+                        <div id="registerEmailError" class="hidden text-sm text-error mt-1"></div>
+                    </div>
+
+                    <div>
+                        <label for="registerPassword" class="block text-sm font-medium text-text-primary mb-2">Password</label>
+                        <div class="relative">
+                            <input type="password" id="registerPassword" name="password" placeholder="Create a password" class="input-field pr-10" required autocomplete="new-password" oninput="checkPasswordStrength(this.value)" />
+                            <button type="button" onclick="togglePasswordVisibility('registerPassword')" class="absolute inset-y-0 right-0 pr-3 flex items-center">
+                                <svg id="registerPasswordIcon" class="w-5 h-5 text-secondary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+                                </svg>
+                            </button>
+                        </div>
+                        <!-- Password Strength Indicator -->
+                        <div id="passwordStrength" class="mt-2 hidden">
+                            <div class="flex items-center space-x-2">
+                                <div class="flex-1 bg-secondary-200 rounded-full h-2">
+                                    <div id="strengthBar" class="h-2 rounded-full transition-all duration-300"></div>
+                                </div>
+                                <span id="strengthText" class="text-xs font-medium"></span>
+                            </div>
+                        </div>
+                        <div id="registerPasswordError" class="hidden text-sm text-error mt-1"></div>
+                    </div>
+
+                    <div>
+                        <label for="confirmPassword" class="block text-sm font-medium text-text-primary mb-2">Confirm Password</label>
+                        <div class="relative">
+                            <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm your password" class="input-field pr-10" required autocomplete="new-password" />
+                            <button type="button" onclick="togglePasswordVisibility('confirmPassword')" class="absolute inset-y-0 right-0 pr-3 flex items-center">
+                                <svg id="confirmPasswordIcon" class="w-5 h-5 text-secondary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+                                </svg>
+                            </button>
+                        </div>
+                        <div id="confirmPasswordError" class="hidden text-sm text-error mt-1"></div>
+                    </div>
+
+                    <div>
+                        <label class="flex items-start">
+                            <input type="checkbox" id="acceptTerms" name="terms" class="rounded border-border text-primary focus:ring-primary-500 mt-1" required />
+                            <span class="ml-2 text-sm text-secondary-700">
+                                I agree to the 
+                                <a href="javascript:void(0)" class="text-primary hover:text-primary-700 transition-colors">Terms of Service</a> 
+                                and 
+                                <a href="javascript:void(0)" class="text-primary hover:text-primary-700 transition-colors">Privacy Policy</a>
+                            </span>
+                        </label>
+                        <div id="termsError" class="hidden text-sm text-error mt-1"></div>
+                    </div>
+
+                    <button type="submit" id="registerSubmit" class="w-full bg-primary text-white py-3 rounded-lg font-medium hover:bg-primary-700 transition-colors focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2">
+                        Create Account
+                    </button>
+                </form>
+
+                <!-- Guest Checkout Option -->
+                <div class="mt-6 pt-6 border-t border-border">
+                    <p class="text-center text-sm text-secondary-600 mb-3">Don't want to create an account?</p>
+                    <a href="checkout_process.html" class="block w-full text-center py-3 border border-border rounded-lg text-sm font-medium text-secondary-700 hover:bg-secondary-50 transition-colors">
+                        Continue as Guest
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Forgot Password Modal -->
+    <div id="forgotPasswordModal" class="fixed inset-0 z-50 hidden">
+        <div class="absolute inset-0 bg-black bg-opacity-50" onclick="closeForgotPassword()"></div>
+        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full max-w-md bg-surface rounded-lg shadow-elevated p-6">
+            <div class="flex items-center justify-between mb-4">
+                <h3 class="text-lg font-semibold text-text-primary">Reset Password</h3>
+                <button onclick="closeForgotPassword()" class="p-2 hover:bg-secondary-100 rounded-lg">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                    </svg>
+                </button>
+            </div>
+            
+            <p class="text-sm text-secondary-600 mb-4">
+                Enter your email address and we'll send you a link to reset your password.
+            </p>
+            
+            <form id="forgotPasswordForm" class="space-y-4">
+                <div>
+                    <label for="resetEmail" class="block text-sm font-medium text-text-primary mb-2">Email Address</label>
+                    <input type="email" id="resetEmail" name="email" placeholder="Enter your email address" class="input-field" required />
+                    <div id="resetEmailError" class="hidden text-sm text-error mt-1"></div>
+                </div>
+                
+                <div class="flex space-x-3">
+                    <button type="button" onclick="closeForgotPassword()" class="flex-1 bg-secondary-100 text-secondary-700 py-3 rounded-lg font-medium hover:bg-secondary-200 transition-colors">
+                        Cancel
+                    </button>
+                    <button type="submit" id="resetSubmit" class="flex-1 bg-primary text-white py-3 rounded-lg font-medium hover:bg-primary-700 transition-colors">
+                        Send Reset Link
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div id="loadingOverlay" class="fixed inset-0 z-60 hidden bg-black bg-opacity-50 flex items-center justify-center">
+        <div class="bg-surface rounded-lg p-6 flex items-center space-x-3">
+            <div class="animate-spin rounded-full h-6 w-6 border-b-2 border-primary"></div>
+            <span class="text-text-primary">Authenticating...</span>
+        </div>
+    </div>
+
+    <!-- Success Message -->
+    <div id="successMessage" class="fixed top-4 right-4 z-70 hidden bg-success text-white px-6 py-3 rounded-lg shadow-elevated">
+        <div class="flex items-center space-x-2">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+            </svg>
+            <span id="successText">Success!</span>
+        </div>
+    </div>
+
+    <script>
+        // Tab switching functionality
+        function switchTab(tab) {
+            const loginTab = document.getElementById('loginTab');
+            const registerTab = document.getElementById('registerTab');
+            const loginForm = document.getElementById('loginForm');
+            const registerForm = document.getElementById('registerForm');
+
+            if (tab === 'login') {
+                loginTab.classList.add('border-primary', 'text-primary');
+                loginTab.classList.remove('border-transparent', 'text-secondary-600');
+                registerTab.classList.add('border-transparent', 'text-secondary-600');
+                registerTab.classList.remove('border-primary', 'text-primary');
+                
+                loginForm.classList.remove('hidden');
+                registerForm.classList.add('hidden');
+                
+                // Focus first input
+                document.getElementById('loginEmail').focus();
+            } else {
+                registerTab.classList.add('border-primary', 'text-primary');
+                registerTab.classList.remove('border-transparent', 'text-secondary-600');
+                loginTab.classList.add('border-transparent', 'text-secondary-600');
+                loginTab.classList.remove('border-primary', 'text-primary');
+                
+                registerForm.classList.remove('hidden');
+                loginForm.classList.add('hidden');
+                
+                // Focus first input
+                document.getElementById('firstName').focus();
+            }
+        }
+
+        // Password visibility toggle
+        function togglePasswordVisibility(inputId) {
+            const input = document.getElementById(inputId);
+            const icon = document.getElementById(inputId + 'Icon');
+            
+            if (input.type === 'password') {
+                input.type = 'text';
+                icon.innerHTML = `
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.878 9.878L3 3m6.878 6.878L21 21"/>
+                `;
+            } else {
+                input.type = 'password';
+                icon.innerHTML = `
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+                `;
+            }
+        }
+
+        // Password strength checker
+        function checkPasswordStrength(password) {
+            const strengthIndicator = document.getElementById('passwordStrength');
+            const strengthBar = document.getElementById('strengthBar');
+            const strengthText = document.getElementById('strengthText');
+            
+            if (password.length === 0) {
+                strengthIndicator.classList.add('hidden');
+                return;
+            }
+            
+            strengthIndicator.classList.remove('hidden');
+            
+            let strength = 0;
+            let feedback = '';
+            
+            // Length check
+            if (password.length >= 8) strength += 1;
+            
+            // Character variety checks
+            if (/[a-z]/.test(password)) strength += 1;
+            if (/[A-Z]/.test(password)) strength += 1;
+            if (/[0-9]/.test(password)) strength += 1;
+            if (/[^A-Za-z0-9]/.test(password)) strength += 1;
+            
+            // Set strength indicator
+            switch (strength) {
+                case 0:
+                case 1:
+                    strengthBar.className = 'h-2 rounded-full transition-all duration-300 bg-error w-1/4';
+                    strengthText.textContent = 'Weak';
+                    strengthText.className = 'text-xs font-medium text-error';
+                    break;
+                case 2:
+                case 3:
+                    strengthBar.className = 'h-2 rounded-full transition-all duration-300 bg-warning w-2/4';
+                    strengthText.textContent = 'Fair';
+                    strengthText.className = 'text-xs font-medium text-warning';
+                    break;
+                case 4:
+                    strengthBar.className = 'h-2 rounded-full transition-all duration-300 bg-success w-3/4';
+                    strengthText.textContent = 'Good';
+                    strengthText.className = 'text-xs font-medium text-success';
+                    break;
+                case 5:
+                    strengthBar.className = 'h-2 rounded-full transition-all duration-300 bg-success w-full';
+                    strengthText.textContent = 'Strong';
+                    strengthText.className = 'text-xs font-medium text-success';
+                    break;
+            }
+        }
+
+        // Form validation
+        function validateEmail(email) {
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(email);
+        }
+
+        function showError(fieldId, message) {
+            const errorElement = document.getElementById(fieldId + 'Error');
+            errorElement.textContent = message;
+            errorElement.classList.remove('hidden');
+        }
+
+        function hideError(fieldId) {
+            const errorElement = document.getElementById(fieldId + 'Error');
+            errorElement.classList.add('hidden');
+        }
+
+        function showLoading() {
+            document.getElementById('loadingOverlay').classList.remove('hidden');
+        }
+
+        function hideLoading() {
+            document.getElementById('loadingOverlay').classList.add('hidden');
+        }
+
+        function showSuccess(message) {
+            const successElement = document.getElementById('successMessage');
+            const successText = document.getElementById('successText');
+            successText.textContent = message;
+            successElement.classList.remove('hidden');
+            
+            setTimeout(() => {
+                successElement.classList.add('hidden');
+            }, 3000);
+        }
+
+        // Login form submission
+        document.getElementById('loginForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+            
+            // Clear previous errors
+            hideError('loginEmail');
+            hideError('loginPassword');
+            
+            // Validation
+            let isValid = true;
+            
+            if (!email) {
+                showError('loginEmail', 'Email is required');
+                isValid = false;
+            } else if (!validateEmail(email)) {
+                showError('loginEmail', 'Please enter a valid email address');
+                isValid = false;
+            }
+            
+            if (!password) {
+                showError('loginPassword', 'Password is required');
+                isValid = false;
+            }
+            
+            if (!isValid) return;
+            
+            // Show loading
+            showLoading();
+            
+            // Simulate API call
+            setTimeout(() => {
+                hideLoading();
+                
+                // Mock authentication - check credentials
+                if (email === 'john.doe@email.com' && password === 'password123') {
+                    showSuccess('Login successful! Redirecting...');
+                    setTimeout(() => {
+                        window.location.href = 'user_account_dashboard.html';
+                    }, 1500);
+                } else {
+                    showError('loginPassword', 'Invalid email or password');
+                }
+            }, 1500);
+        });
+
+        // Register form submission
+        document.getElementById('registerForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const firstName = document.getElementById('firstName').value;
+            const lastName = document.getElementById('lastName').value;
+            const email = document.getElementById('registerEmail').value;
+            const password = document.getElementById('registerPassword').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            const acceptTerms = document.getElementById('acceptTerms').checked;
+            
+            // Clear previous errors
+            hideError('firstName');
+            hideError('lastName');
+            hideError('registerEmail');
+            hideError('registerPassword');
+            hideError('confirmPassword');
+            hideError('terms');
+            
+            // Validation
+            let isValid = true;
+            
+            if (!firstName.trim()) {
+                showError('firstName', 'First name is required');
+                isValid = false;
+            }
+            
+            if (!lastName.trim()) {
+                showError('lastName', 'Last name is required');
+                isValid = false;
+            }
+            
+            if (!email) {
+                showError('registerEmail', 'Email is required');
+                isValid = false;
+            } else if (!validateEmail(email)) {
+                showError('registerEmail', 'Please enter a valid email address');
+                isValid = false;
+            }
+            
+            if (!password) {
+                showError('registerPassword', 'Password is required');
+                isValid = false;
+            } else if (password.length < 8) {
+                showError('registerPassword', 'Password must be at least 8 characters long');
+                isValid = false;
+            }
+            
+            if (!confirmPassword) {
+                showError('confirmPassword', 'Please confirm your password');
+                isValid = false;
+            } else if (password !== confirmPassword) {
+                showError('confirmPassword', 'Passwords do not match');
+                isValid = false;
+            }
+            
+            if (!acceptTerms) {
+                showError('terms', 'You must accept the terms and conditions');
+                isValid = false;
+            }
+            
+            if (!isValid) return;
+            
+            // Show loading
+            showLoading();
+            
+            // Simulate API call
+            setTimeout(() => {
+                hideLoading();
+                showSuccess('Account created successfully! Please check your email for verification.');
+                
+                // Switch to login tab after successful registration
+                setTimeout(() => {
+                    switchTab('login');
+                    document.getElementById('loginEmail').value = email;
+                }, 2000);
+            }, 1500);
+        });
+
+        // Forgot password functionality
+        function showForgotPassword() {
+            document.getElementById('forgotPasswordModal').classList.remove('hidden');
+            document.getElementById('resetEmail').focus();
+        }
+
+        function closeForgotPassword() {
+            document.getElementById('forgotPasswordModal').classList.add('hidden');
+            hideError('resetEmail');
+        }
+
+        document.getElementById('forgotPasswordForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const email = document.getElementById('resetEmail').value;
+            
+            hideError('resetEmail');
+            
+            if (!email) {
+                showError('resetEmail', 'Email is required');
+                return;
+            }
+            
+            if (!validateEmail(email)) {
+                showError('resetEmail', 'Please enter a valid email address');
+                return;
+            }
+            
+            // Show loading
+            showLoading();
+            
+            // Simulate API call
+            setTimeout(() => {
+                hideLoading();
+                closeForgotPassword();
+                showSuccess('Password reset link sent to your email!');
+            }, 1500);
+        });
+
+        // Social login functionality
+        function socialLogin(provider) {
+            showLoading();
+            
+            // Simulate social login
+            setTimeout(() => {
+                hideLoading();
+                showSuccess(`${provider.charAt(0).toUpperCase() + provider.slice(1)} login successful! Redirecting...`);
+                setTimeout(() => {
+                    window.location.href = 'user_account_dashboard.html';
+                }, 1500);
+            }, 1000);
+        }
+
+        // Auto-focus on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('loginEmail').focus();
+        });
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeForgotPassword();
+            }
+        });
+
+        // Real-time validation
+        document.getElementById('loginEmail').addEventListener('blur', function() {
+            const email = this.value;
+            if (email && !validateEmail(email)) {
+                showError('loginEmail', 'Please enter a valid email address');
+            } else {
+                hideError('loginEmail');
+            }
+        });
+
+        document.getElementById('registerEmail').addEventListener('blur', function() {
+            const email = this.value;
+            if (email && !validateEmail(email)) {
+                showError('registerEmail', 'Please enter a valid email address');
+            } else {
+                hideError('registerEmail');
+            }
+        });
+
+        document.getElementById('confirmPassword').addEventListener('input', function() {
+            const password = document.getElementById('registerPassword').value;
+            const confirmPassword = this.value;
+            
+            if (confirmPassword && password !== confirmPassword) {
+                showError('confirmPassword', 'Passwords do not match');
+            } else {
+                hideError('confirmPassword');
+            }
+        });
+    </script>
+</body>
+</html>
